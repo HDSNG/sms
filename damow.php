@@ -8,6 +8,9 @@ namespace damow;
  */
 class damow{
 
+    public function table(){
+        echo 1;die;
+    }
     /**
      * 对象转数组
      * @return object

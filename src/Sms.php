@@ -1,12 +1,12 @@
 <?php
-namespace damow;
+namespace Damow;
 /**
  * Created by PhpStorm.
  * User: Damow
  * Date: 2018/10/8 0008
  * Time: 15:21
  */
-class damow{
+class Sms{
 
     public function table(){
         echo 1;die;

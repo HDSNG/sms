@@ -30,13 +30,5 @@ class Sms{
         return $result;
     }
 
-    /**
-     * 测试
-     */
-    public function index(){
-        $data['mobile'] = '13027199173';
-        $data['sence']  = '2';
-        $result = $this->SendMsg($data);
-        var_dump($result);die;
-    }
+
 }

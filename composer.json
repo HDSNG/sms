@@ -1,0 +1,18 @@
+{
+    "name": "damows/01lumen",
+    "description": "long demo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "damow",
+            "email": "1515551088@qq.com"
+        }
+    ],
+  "autoload":{
+        "psr-4":{
+            "Long\\":"src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

@@ -11,7 +11,7 @@ class Sms{
     protected $sence_array = [1,2];
     const WIN  = 200;//成功
     const LOSE = 201;//错误
-    const DOMAIN = "http://02lumen/Sms/SendCode";//本地环境
+    const DOMAIN = "http://02lumen/Sms/SendCode";//本地环境1
     /**
      * 调用发送短信接口
      * @access public

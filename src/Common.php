@@ -529,8 +529,8 @@ class Common{
         $data['code'] = $code;
         $data['msg']  = $msg;
         is_object($result)?$result = $result->toArray():'';
-        $result = _unsetNull($result);
-        !empty($result) && $data['data'] = result_type($result);
+        $result = $this->_unsetNull($result);
+        !empty($result) && $data['data'] = $this->result_type($result);
         echo json_encode($data);die;
     }
 

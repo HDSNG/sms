@@ -7,10 +7,8 @@ namespace Damow;
  * Time: 17:02
  */
 use Damow\Common;
-class Sms{
+class Sms extends Base {
     protected $sence_array = [1,2];
-    const WIN  = 200;//成功
-    const LOSE = 201;//错误
     const DOMAIN = "http://02lumen/Sms/SendCode";//本地环境1
     /**
      * 调用发送短信接口
@@ -20,7 +18,7 @@ class Sms{
      * @return array 返回类型
      */
     public function SendMsg($data){
-        $Damow = new Common();
+        $Damow = $this->datamow;
         !isset($data['mobile']) && $Damow->datamsg(self::LOSE,'请填写手机号');
         strlen($data['mobile'])!='11' && $Damow->datamsg(self::LOSE,'手机号格式有误');
         !preg_match("/^1[345678]{1}\d{9}$/",$data['mobile']) && $Damow->datamsg(self::LOSE,'请输入正确的手机号');

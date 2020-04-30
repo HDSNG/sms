@@ -8,6 +8,7 @@
 
 require "../Base.php";
 require "../Boot.php";
+require "../Sms.php";
 require "../Common.php";
 
 //机器人通知
@@ -16,7 +17,7 @@ $array = [
     'secret_key'=>'dianba_public',
     'level'=>'2',
     'channel'=>'1',
-    'robot_name'=>'电霸公共01',
+    'robot_name'=>'',
 ];
 $boot  = new Damow\Boot($array);
 $content = [
@@ -24,3 +25,11 @@ $content = [
     'content'=>'{     "msgtype": "text",     "text": {         "content": "广州今日天气：29度，大部分多云，降雨概率：60%" } }',
 ];
 $boot->PushMsg($content);
+
+//发送短信
+$sms  = new Damow\Sms();
+$array= [
+    'mobile'=>'11111111111',
+    'sence'=>2,
+];
+$sms->SendMsg($array);

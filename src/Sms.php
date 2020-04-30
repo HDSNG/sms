@@ -25,7 +25,9 @@ class Sms extends Base {
         $Damow->isVirPN($data['mobile']) && $Damow->datamsg(self::LOSE,'错误的手机号');
         $data['sence'] = (isset($data['sence']) && isset($this->sence_array[$data['sence']]))?$data['sence']:2;
         $result = $Damow->httpWurl(self::DOMAIN,$data,"POST");
-        return $result;
+        $result = json_decode($result,true);
+        $result['code']!=200 && $this->datamow->datamsg(self::LOSE,$result['msg']);
+        $this->datamow->datamsg(self::WIN,'发送成功');
     }
 
 

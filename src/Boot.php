@@ -57,12 +57,17 @@ class Boot extends Base {
     public function __construct(array $array)
     {
         parent::__construct();
-        $this->system_code = isset($array['system_code'])?$array['system_code']:'';//系统简码
-        $this->secret_key  = isset($array['secret_key'])?$array['secret_key']:''; //系统秘钥
-        $this->robot_name  = isset($array['robot_name'])?$array['robot_name']:''; //机器人名字
-
-        $this->level  = (isset($array['level']) && $this->msg_level[$array['level']])?$array['level']:''; //消息级别
-        $this->channel  = (isset($array['channel']) && $this->msg_channel[$array['channel']])?$array['channel']:''; //推送渠道
+        (!isset($array['system_code']) || empty($array['system_code'])) && $this->datamow->datamsg(self::LOSE,'系统简码不能为空');
+        (!isset($array['secret_key']) || empty($array['secret_key'])) && $this->datamow->datamsg(self::LOSE,'系统秘钥不能为空');
+        (!isset($array['robot_name']) || empty($array['robot_name'])) && $this->datamow->datamsg(self::LOSE,'机器人名字不能为空');
+        (!isset($array['level']) || !isset($this->msg_level[$array['level']])) && $this->datamow->datamsg(self::LOSE,'请输入正确的消息级别');
+        (!isset($array['channel']) || !isset($this->msg_channel[$array['channel']])) && $this->datamow->datamsg(self::LOSE,'请输入正确的推送渠道');
+        echo 1;die;
+        $this->system_code = $array['system_code'];//系统简码
+        $this->secret_key  = $array['secret_key']; //系统秘钥
+        $this->robot_name  = $array['robot_name']; //机器人名字
+        $this->level       = $array['level'];//消息级别
+        $this->channel     = $array['channel'];//推送渠道
 
     }
 
@@ -89,7 +94,7 @@ class Boot extends Base {
         $result = $this->datamow->httpWurl(self::BOOT_DOMAIN,$data,"POST");
         $result = json_decode($result,true);
         $result['error_code']!=0 && $this->datamow->datamsg(self::LOSE,$result['message']);
-        $this->datamow->datamsg(self::LOSE,'发送成功');
+        $this->datamow->datamsg(self::WIN,'发送成功');
     }
 
 

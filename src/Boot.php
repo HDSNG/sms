@@ -62,7 +62,6 @@ class Boot extends Base {
         (!isset($array['robot_name']) || empty($array['robot_name'])) && $this->datamow->datamsg(self::LOSE,'机器人名字不能为空');
         (!isset($array['level']) || !isset($this->msg_level[$array['level']])) && $this->datamow->datamsg(self::LOSE,'请输入正确的消息级别');
         (!isset($array['channel']) || !isset($this->msg_channel[$array['channel']])) && $this->datamow->datamsg(self::LOSE,'请输入正确的推送渠道');
-        echo 1;die;
         $this->system_code = $array['system_code'];//系统简码
         $this->secret_key  = $array['secret_key']; //系统秘钥
         $this->robot_name  = $array['robot_name']; //机器人名字

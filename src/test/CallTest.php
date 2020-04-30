@@ -17,7 +17,7 @@ $array = [
     'secret_key'=>'dianba_public',
     'level'=>'2',
     'channel'=>'1',
-    'robot_name'=>'',
+    'robot_name'=>'电霸公共01',
 ];
 $boot  = new Damow\Boot($array);
 $content = [

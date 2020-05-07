@@ -24,12 +24,12 @@ $content = [
     'type'=>1,
     'content'=>'{     "msgtype": "text",     "text": {         "content": "广州今日天气：29度，大部分多云，降雨概率：60%" } }',
 ];
-$boot->PushMsg($content);
-
+$res = $boot->PushMsg($content);
+var_dump($res);die;
 //发送短信
-$sms  = new Damow\Sms();
-$array= [
-    'mobile'=>'11111111111',
-    'sence'=>2,
-];
-$sms->SendMsg($array);
+//$sms  = new Damow\Sms();
+//$array= [
+//    'mobile'=>'11111111111',
+//    'sence'=>2,
+//];
+//$sms->SendMsg($array);

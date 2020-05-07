@@ -19,15 +19,25 @@ class Sms extends Base {
      */
     public function SendMsg($data){
         $Damow = $this->datamow;
-        !isset($data['mobile']) && $Damow->datamsg(self::LOSE,'请填写手机号');
-        strlen($data['mobile'])!='11' && $Damow->datamsg(self::LOSE,'手机号格式有误');
-        !preg_match("/^1[345678]{1}\d{9}$/",$data['mobile']) && $Damow->datamsg(self::LOSE,'请输入正确的手机号');
-        $Damow->isVirPN($data['mobile']) && $Damow->datamsg(self::LOSE,'错误的手机号');
+        if(!isset($data['mobile'])){
+            return ['code'=>self::LOSE,'msg'=>'请填写手机号'];
+        }
+        if(strlen($data['mobile'])!='11'){
+            return ['code'=>self::LOSE,'msg'=>'手机号格式有误'];
+        }
+        if(!preg_match("/^1[345678]{1}\d{9}$/",$data['mobile'])){
+            return ['code'=>self::LOSE,'msg'=>'请输入正确的手机号'];
+        }
+        if($Damow->isVirPN($data['mobile'])){
+            return  ['code'=>self::LOSE,'msg'=>'错误的手机号'];
+        }
         $data['sence'] = (isset($data['sence']) && isset($this->sence_array[$data['sence']]))?$data['sence']:2;
         $result = $Damow->httpWurl(self::DOMAIN,$data,"POST");
         $result = json_decode($result,true);
-        $result['code']!=200 && $this->datamow->datamsg(self::LOSE,$result['msg']);
-        $this->datamow->datamsg(self::WIN,'发送成功');
+        if($result['code']!=200){
+            return  ['code'=>self::LOSE,'msg'=>$result['msg']];
+        }
+        return  ['code'=>self::LOSE,'msg'=>'发送成功'];
     }
 
 
